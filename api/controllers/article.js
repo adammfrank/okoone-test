@@ -30,11 +30,16 @@ module.exports.list = function (req, res) {
 
     const sort = req.query.sort === 'desc' ? -1 : 1;
 
-
+    const query = {};
     if (req.query.searchText) {
-        Article.find({
-            'title': { '$regex': req.query.searchText, '$options': 'i' }
-        }).sort({ 'title': sort }).exec(function (err, articles) {
+        query['title'] = { '$regex': req.query.searchText, '$options': 'i' };
+    }
+    if (req.query.date) {
+        query['date'] = { '$lt': req.query.date };
+    }
+
+    Article.find(query)
+        .sort({ 'title': sort }).exec(function (err, articles) {
             if (err) {
                 return res.status(400).json(err);
             }
@@ -42,16 +47,6 @@ module.exports.list = function (req, res) {
             res.status(200).json(articles);
 
         });
-    }
-    else {
-        Article.find(function (err, articles) {
-            if (err) {
-                return res.status(400).json(err);
-            }
-
-            res.status(200).json(articles);
-        })
-    }
 };
 
 module.exports.get = function (req, res) {
