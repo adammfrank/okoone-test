@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Article = mongoose.model('Article');
 
+
 module.exports.store = async function (req, res) {
 
     const article = new Article();
@@ -8,6 +9,7 @@ module.exports.store = async function (req, res) {
     article.title = req.body.title;
     article.description = req.body.description;
     article.date = req.body.date;
+    article.user_id = req.payload._id;
 
     try {
         await article.save()
@@ -23,7 +25,9 @@ module.exports.list = async function (req, res) {
 
     const sort = req.query.sort === 'desc' ? -1 : 1;
 
-    const query = {};
+    const query = {
+        'user_id': mongoose.Types.ObjectId(req.payload._id)
+    };
     if (req.query.searchText) {
         query['title'] = { '$regex': req.query.searchText, '$options': 'i' };
     }

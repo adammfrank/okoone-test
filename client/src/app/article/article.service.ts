@@ -26,11 +26,11 @@ export class ArticleService {
     }
 
     public storeArticle(article: Article) {
-        return this.http.post(`http://localhost:3000/api/articles`, article);
+        return this.http.post(`http://localhost:3000/api/articles`, article, { headers: { Authorization: `Bearer ${this.getToken()}` } });
     }
 
     public updateArticle(article: Article) {
-        return this.http.put(`http://localhost:3000/api/articles/${article._id}`, article);
+        return this.http.put(`http://localhost:3000/api/articles/${article._id}`, article, { headers: { Authorization: `Bearer ${this.getToken()}` } });
     }
 
     public getArticles(params?: HttpParams) {
@@ -42,6 +42,6 @@ export class ArticleService {
     }
 
     public deleteArticle(article: Article) {
-        return this.http.delete(`http://localhost:3000/api/articles/${article._id}`);
+        return this.http.delete(`http://localhost:3000/api/articles/${article._id}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
     }
 }

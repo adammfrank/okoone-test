@@ -17,11 +17,11 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-router.post('/articles', ctrlArticle.store);
-router.get('/articles', ctrlArticle.list);
-router.get('/articles/:_id', ctrlArticle.get);
-router.put('/articles/:_id', ctrlArticle.update);
-router.delete('/articles/:_id', ctrlArticle.delete);
+router.post('/articles', auth, ctrlArticle.store);
+router.get('/articles', auth, ctrlArticle.list);
+router.get('/articles/:_id', auth, ctrlArticle.get);
+router.put('/articles/:_id', auth, ctrlArticle.update);
+router.delete('/articles/:_id', auth, ctrlArticle.delete);
 
 router.get('/test', function (req, res) {
   return res.status(200).send('TEST SUCCESSFUL');
