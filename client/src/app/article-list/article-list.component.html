@@ -1,5 +1,6 @@
 <ul class="list-group">
     <li *ngFor="let article of articles" class="list-group-item">
-        {{article.title}}
+        <a [routerLink]="['/articleEdit', article._id]">
+            {{article.title}}</a>
     </li>
 </ul>
