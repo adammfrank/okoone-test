@@ -46,6 +46,30 @@ module.exports.list = async function (req, res) {
 
 };
 
+module.exports.listPublic = async function (req, res) {
+
+    const sort = req.query.sort === 'desc' ? -1 : 1;
+
+    const query = {
+    };
+    if (req.query.searchText) {
+        query['title'] = { '$regex': req.query.searchText, '$options': 'i' };
+    }
+    if (req.query.date) {
+        query['date'] = { '$lt': req.query.date };
+    }
+
+    try {
+        const articles = await Article.find(query)
+            .sort({ 'title': sort }).exec();
+        res.status(200).json(articles);
+    }
+    catch (err) {
+        return res.status(400).json(err);
+    }
+
+};
+
 module.exports.get = async function (req, res) {
     const _id = req.params._id;
     try {

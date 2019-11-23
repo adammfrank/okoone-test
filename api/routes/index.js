@@ -23,6 +23,8 @@ router.get('/articles/:_id', auth, ctrlArticle.get);
 router.put('/articles/:_id', auth, ctrlArticle.update);
 router.delete('/articles/:_id', auth, ctrlArticle.delete);
 
+router.get('/public/articles', ctrlArticle.listPublic);
+
 router.get('/test', function (req, res) {
   return res.status(200).send('TEST SUCCESSFUL');
 });
