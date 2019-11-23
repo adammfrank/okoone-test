@@ -26,7 +26,7 @@ module.exports.list = async function (req, res) {
     const sort = req.query.sort === 'desc' ? -1 : 1;
 
     const query = {
-        'user_id': mongoose.Types.ObjectId(req.payload._id)
+        'user_id': mongoose.Types.ObjectId(req.payload._id) // I don't know why this is not restricting the user
     };
     if (req.query.searchText) {
         query['title'] = { '$regex': req.query.searchText, '$options': 'i' };
