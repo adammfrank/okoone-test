@@ -38,4 +38,8 @@ export class ArticleService {
     public storeArticle(article: Article) {
         return this.request('post', article);
     }
+
+    public getArticles() {
+        return this.request('get');
+    }
 }

@@ -13,6 +13,7 @@ import { ArticleComponent } from './article/article.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { ArticleService } from './article/article.service';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ArticleComponent
+    ArticleComponent,
+    ArticleListComponent
   ],
   imports: [
     BrowserModule,

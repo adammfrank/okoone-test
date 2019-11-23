@@ -18,6 +18,8 @@ export class ArticleComponent {
     constructor(private articleService: ArticleService, private router: Router) { }
 
     submitArticle() {
-        this.articleService.storeArticle(this.article).subscribe();
+        this.articleService.storeArticle(this.article).subscribe(() => {
+            this.router.navigateByUrl('/profile');
+        });
     }
 }
