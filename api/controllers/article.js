@@ -47,3 +47,28 @@ module.exports.get = function (req, res) {
         res.status(200).json(article);
     });
 }
+
+module.exports.update = async function (req, res) {
+    const _id = req.params._id;
+    const article = await Article.findOne({ '_id': req.params._id });
+
+    article.title = req.body.title;
+    article.description = req.body.description;
+    article.date = req.body.date;
+
+    try {
+        await article.save();
+        return res.status(200).json(article);
+    }
+    catch (err) {
+        return res.status(400).json(err);
+    }
+
+    // Article.find({ '_id': _id }, function (err, article) {
+    //     if (err) {
+    //         return res.status(400).json(err);
+    //     }
+
+    //     res.status(200).json(article);
+    // });
+}

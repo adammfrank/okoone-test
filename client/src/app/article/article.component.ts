@@ -30,8 +30,16 @@ export class ArticleComponent {
     }
 
     submitArticle() {
-        this.articleService.storeArticle(this.article).subscribe(() => {
-            this.router.navigateByUrl('/profile');
-        });
+        if (this.article._id) {
+            this.articleService.updateArticle(this.article).subscribe(() => {
+                this.router.navigateByUrl('/profile');
+            });
+        }
+        else {
+            this.articleService.storeArticle(this.article).subscribe(() => {
+                this.router.navigateByUrl('/profile');
+            });
+
+        }
     }
 }
