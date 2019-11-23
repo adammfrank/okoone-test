@@ -63,12 +63,14 @@ module.exports.update = async function (req, res) {
     catch (err) {
         return res.status(400).json(err);
     }
+}
 
-    // Article.find({ '_id': _id }, function (err, article) {
-    //     if (err) {
-    //         return res.status(400).json(err);
-    //     }
-
-    //     res.status(200).json(article);
-    // });
+module.exports.delete = async function (req, res) {
+    try {
+        await Article.findByIdAndRemove(req.params._id);
+        return res.status(200).send();
+    }
+    catch (err) {
+        return res.status(400).send(err);
+    }
 }

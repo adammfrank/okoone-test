@@ -21,6 +21,7 @@ router.post('/articles', ctrlArticle.store);
 router.get('/articles', ctrlArticle.list);
 router.get('/articles/:_id', ctrlArticle.get);
 router.put('/articles/:_id', ctrlArticle.update);
+router.delete('/articles/:_id', ctrlArticle.delete);
 
 router.get('/test', function (req, res) {
   return res.status(200).send('TEST SUCCESSFUL');

@@ -34,6 +34,9 @@ export class ArticleService {
         else if (method === 'put') {
             base = this.http.put(`http://localhost:3000/api/articles/${_id}`, article);
         }
+        else if (method === 'delete') {
+            base = this.http.delete(`http://localhost:3000/api/articles/${_id}`);
+        }
         else if (_id) {
             base = this.http.get(`http://localhost:3000/api/articles/${_id}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
         }
@@ -58,5 +61,9 @@ export class ArticleService {
 
     public getArticle(_id: string) {
         return this.request('get', null, _id);
+    }
+
+    public deleteArticle(article: Article) {
+        return this.request('delete', article, article._id);
     }
 }

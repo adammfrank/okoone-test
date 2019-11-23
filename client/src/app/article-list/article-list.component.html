@@ -1,6 +1,22 @@
-<ul class="list-group">
-    <li *ngFor="let article of articles" class="list-group-item">
-        <a [routerLink]="['/articleEdit', article._id]">
-            {{article.title}}</a>
-    </li>
-</ul>
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" name="search" placeholder="Search articles">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            <li *ngFor="let article of articles" class="list-group-item">
+                <a [routerLink]="['/articleEdit', article._id]">
+                    {{article.title}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

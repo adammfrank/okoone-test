@@ -6,9 +6,6 @@ import { switchMap } from 'rxjs/operators';
 @Component({
     templateUrl: './article.component.html'
 })
-
-
-
 export class ArticleComponent {
     article: Article = {
         _id: '',
@@ -41,5 +38,11 @@ export class ArticleComponent {
             });
 
         }
+    }
+
+    deleteArticle() {
+        this.articleService.deleteArticle(this.article).subscribe(() => {
+            this.router.navigateByUrl('/profile');
+        })
     }
 }
