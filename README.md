@@ -14,3 +14,5 @@ I got started from this repo https://github.com/sitepoint-editors/MEAN-stack-aut
 The public list endpoint is localhost:3000/api/public/articles
 Example: http://localhost:3000/api/public/articles?date=2019-11-14T00:00:00.000Z
 
+Bug: You need to refresh the page between changing users to see the right articles
+
