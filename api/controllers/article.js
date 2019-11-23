@@ -28,10 +28,13 @@ module.exports.store = function (req, res) {
 
 module.exports.list = function (req, res) {
 
+    const sort = req.query.sort === 'desc' ? -1 : 1;
+
+
     if (req.query.searchText) {
         Article.find({
             'title': { '$regex': req.query.searchText, '$options': 'i' }
-        }, function (err, articles) {
+        }).sort({ 'title': sort }).exec(function (err, articles) {
             if (err) {
                 return res.status(400).json(err);
             }

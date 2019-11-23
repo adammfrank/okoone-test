@@ -16,12 +16,15 @@ export class ArticleListComponent {
 
     ngOnInit() {
         this.searchText = '';
-        this.getArticles();
+        this.getArticles({});
     }
 
-    getArticles() {
-        const params = new HttpParams()
+    getArticles(options: Object) {
+        let params = new HttpParams()
             .set('searchText', this.searchText);
+        for (let option in options) {
+            params = params.set(option, options[option]);
+        }
         this.articleService.getArticles(params)
             .subscribe((articles: Article[]) => {
                 this.articles = articles;

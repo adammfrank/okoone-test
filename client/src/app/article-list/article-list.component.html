@@ -12,12 +12,20 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <ul class="list-group">
             <li *ngFor="let article of articles" class="list-group-item">
                 <a [routerLink]="['/articleEdit', article._id]">
                     {{article.title}}</a>
             </li>
         </ul>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-default" (click)="getArticles({'sort': 'desc'})">
+            <i class="fas fa-sort-down"></i>
+        </button>
+        <button class="btn btn-default" (click)="getArticles({'sort': 'asc'})">
+            <i class="fas fa-sort-up"></i>
+        </button>
     </div>
 </div>
