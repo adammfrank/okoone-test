@@ -14,5 +14,3 @@ I got started from this repo https://github.com/sitepoint-editors/MEAN-stack-aut
 The public list endpoint is localhost:3000/api/public/articles
 Example: http://localhost:3000/api/public/articles?date=2019-11-14T00:00:00.000Z
 
-Future Improvements:
-Articles are visible to all users. I couldn't figure out why I couldn't filter by user_id. See article.js:29
