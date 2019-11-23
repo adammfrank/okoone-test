@@ -28,13 +28,27 @@ module.exports.store = function (req, res) {
 
 module.exports.list = function (req, res) {
 
-    Article.find(function (err, articles) {
-        if (err) {
-            return res.status(400).json(err);
-        }
+    if (req.query.searchText) {
+        Article.find({
+            'title': { '$regex': req.query.searchText, '$options': 'i' }
+        }, function (err, articles) {
+            if (err) {
+                return res.status(400).json(err);
+            }
 
-        res.status(200).json(articles);
-    })
+            res.status(200).json(articles);
+
+        });
+    }
+    else {
+        Article.find(function (err, articles) {
+            if (err) {
+                return res.status(400).json(err);
+            }
+
+            res.status(200).json(articles);
+        })
+    }
 };
 
 module.exports.get = function (req, res) {

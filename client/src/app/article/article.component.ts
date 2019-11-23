@@ -19,7 +19,7 @@ export class ArticleComponent {
     ngOnInit() {
         this.route.paramMap.pipe(
             switchMap((params: ParamMap) =>
-                this.articleService.getArticle(params.get('article'))))
+                this.articleService.getArticle(params.get('_id'))))
             .subscribe((articles: Article[]) => {
                 this.article = articles[0];
                 this.article.date = new Date(this.article.date).toISOString().split('T')[0]

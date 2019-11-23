@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-md-12">
-        <form class="form-inline">
+        <form class="form-inline" (submit)="getArticles()">
             <div class="form-group">
-                <input type="text" class="form-control" name="search" placeholder="Search articles">
+                <input type="text" class="form-control" name="search" placeholder="Search articles"
+                    [(ngModel)]="searchText">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

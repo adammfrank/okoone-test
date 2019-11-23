@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
@@ -25,45 +25,23 @@ export class ArticleService {
         return this.token;
     }
 
-    private request(method: 'post' | 'get' | 'put' | 'delete', article?: Article, _id?: string): Observable<any> {
-        let base;
-
-        if (method === 'post') {
-            base = this.http.post(`http://localhost:3000/api/articles`, article);
-        }
-        else if (method === 'put') {
-            base = this.http.put(`http://localhost:3000/api/articles/${_id}`, article);
-        }
-        else if (method === 'delete') {
-            base = this.http.delete(`http://localhost:3000/api/articles/${_id}`);
-        }
-        else if (_id) {
-            base = this.http.get(`http://localhost:3000/api/articles/${_id}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
-        }
-        else {
-            base = this.http.get(`http://localhost:3000/api/articles`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
-        }
-
-        return base;
-    }
-
     public storeArticle(article: Article) {
-        return this.request('post', article);
+        return this.http.post(`http://localhost:3000/api/articles`, article);
     }
 
     public updateArticle(article: Article) {
-        return this.request('put', article, article._id);
+        return this.http.put(`http://localhost:3000/api/articles/${article._id}`, article);
     }
 
-    public getArticles() {
-        return this.request('get');
+    public getArticles(params?: HttpParams) {
+        return this.http.get(`http://localhost:3000/api/articles`, { headers: { Authorization: `Bearer ${this.getToken()}` }, params: params });
     }
 
     public getArticle(_id: string) {
-        return this.request('get', null, _id);
+        return this.http.get(`http://localhost:3000/api/articles/${_id}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
     }
 
     public deleteArticle(article: Article) {
-        return this.request('delete', article, article._id);
+        return this.http.delete(`http://localhost:3000/api/articles/${article._id}`);
     }
 }
