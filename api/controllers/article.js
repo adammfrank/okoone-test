@@ -19,9 +19,20 @@ module.exports.store = function (req, res) {
 
     article.save(function (err) {
         if (err) {
-            return res.status(400).send(article);
+            return res.status(400).json(err);
         }
 
         res.status(200).json(article);
     });
+};
+
+module.exports.list = function (req, res) {
+
+    Article.find(function (err, articles) {
+        if (err) {
+            return res.status(400).json(err);
+        }
+
+        res.status(200).json(articles);
+    })
 };
