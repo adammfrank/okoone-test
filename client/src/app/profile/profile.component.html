@@ -3,20 +3,10 @@
 
         <div class="col-md-6">
 
-            <h1 class="form-signin-heading">Your profile</h1>
+            <h1 class="form-signin-heading">{{details?.name}}'s profile</h1>
 
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Full name</label>
-                    <p class="form-control-static">{{ details?.name }}</p>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Email</label>
-                    <p class="form-control-static">{{ details?.email }}</p>
-                </div>
-            </div>
-
-            <a routerLink="/articleCreate">Create an Article</a>
+            <h3>Email: {{details?.email}}</h3>
+            <a class="btn btn-default" routerLink="/articleCreate">Create an Article</a>
 
         </div>
 
