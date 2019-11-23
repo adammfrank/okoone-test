@@ -16,3 +16,5 @@ Example: http://localhost:3000/api/public/articles?date=2019-11-14T00:00:00.000Z
 
 Bug: You need to refresh the page between changing users to see the right articles
 
+I didn't get to the SSR. I'm unfamiliar with it and chose to focus on the core functionality.
+
