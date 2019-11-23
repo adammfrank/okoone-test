@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
+import { ArticleListComponent } from '../article-list/article-list.component';
 
 export interface Article {
+    _id: string;
     title: string;
     description: string;
     date: string
@@ -23,12 +25,16 @@ export class ArticleService {
         return this.token;
     }
 
-    private request(method: 'post' | 'get', article?: Article): Observable<any> {
+    private request(method: 'post' | 'get', article?: Article, _id?: string): Observable<any> {
         let base;
 
         if (method === 'post') {
             base = this.http.post(`http://localhost:3000/api/articles`, article);
-        } else {
+        }
+        else if (_id) {
+            base = this.http.get(`http://localhost:3000/api/articles/${_id}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
+        }
+        else {
             base = this.http.get(`http://localhost:3000/api/articles`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
         }
 
@@ -41,5 +47,9 @@ export class ArticleService {
 
     public getArticles() {
         return this.request('get');
+    }
+
+    public getArticle(_id: string) {
+        return this.request('get', null, _id);
     }
 }

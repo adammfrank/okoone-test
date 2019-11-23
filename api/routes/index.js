@@ -19,6 +19,7 @@ router.post('/login', ctrlAuth.login);
 
 router.post('/articles', ctrlArticle.store);
 router.get('/articles', ctrlArticle.list);
+router.get('/articles/:_id', ctrlArticle.get);
 
 router.get('/test', function (req, res) {
   return res.status(200).send('TEST SUCCESSFUL');

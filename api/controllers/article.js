@@ -36,3 +36,14 @@ module.exports.list = function (req, res) {
         res.status(200).json(articles);
     })
 };
+
+module.exports.get = function (req, res) {
+    const _id = req.params._id;
+    Article.find({ '_id': _id }, function (err, article) {
+        if (err) {
+            return res.status(400).json(err);
+        }
+
+        res.status(200).json(article);
+    });
+}
