@@ -1,14 +1,6 @@
 var mongoose = require('mongoose');
 var Article = mongoose.model('Article');
 
-var sendJSONresponse = function (res, status, content) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'content-type');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    res.status(status);
-    res.json(content);
-};
-
 module.exports.store = async function (req, res) {
 
     const article = new Article();
